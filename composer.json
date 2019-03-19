@@ -1,0 +1,9 @@
+{
+    "name": "danpai888/tpadmin",
+    "require": {
+
+    },
+    "autoload": {
+        "psr-4": {"dpadmin\\": "src/"}
+    }
+}

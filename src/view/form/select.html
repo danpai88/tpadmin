@@ -1,0 +1,37 @@
+<div class="form-group">
+    <label for="{$instance->id}" class="col-sm-2 control-label">{$instance->label}</label>
+
+    <div class="col-sm-10 col-md-4">
+        <select class="form-control input-sm" name="{$instance->id}{if $instance->isMulti}[]{/if}" id="{$instance->id}" {if $instance->isMulti}multiple="multiple"{/if}>
+            {foreach $instance->options as $value => $_title}
+                <option value="{$value}"
+                        {if !$instance->isMulti}
+                            {if isset($instance->value)}
+                                {if strval($instance->value) === strval($value)}
+                                    selected="selected"
+                                {/if}
+                            {else /}
+                                {if strval($instance->defaultValue) === strval($value)}
+                                    selected="selected"
+                                {/if}
+                            {/if}
+                        {/if}
+                    >{$_title}</option>
+            {/foreach}
+        </select>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#{$instance->id}').select2({
+            "placeholder":"{$instance->placeholder}"
+        });
+
+        {if $instance->isMulti}
+            {if is_string($instance->value)}
+                {php}$instance->value = explode(",", rtrim($instance->value, ','));{/php}
+            {/if}
+            $('#{$instance->id}').val({:json_encode($instance->value)}).trigger('change')
+        {/if}
+    });
+</script>
