@@ -76,4 +76,9 @@ class Base
 		}
 		return [$parent_path_id, $son_path_id];
 	}
+
+	public function __get($name)
+	{
+		return $this->$name;
+	}
 }

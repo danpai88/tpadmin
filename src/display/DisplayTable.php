@@ -15,10 +15,10 @@ class DisplayTable extends Base
 
     public $title = '';
 
-    public $disableAction = false;
-    public $disableEdit = false;
-    public $disableCreate = false;
-    public $disableDelete = false;
+    protected $disableAction = false;
+	protected $disableEdit = false;
+	protected $disableCreate = false;
+	protected $disableDelete = false;
 
     public $model = '';
     public $model_handle = null;
@@ -43,6 +43,30 @@ class DisplayTable extends Base
         $this->pagesize = $pagesize;
         return $this;
     }
+
+	public function disableDelete()
+	{
+		$this->disableDelete = true;
+		return $this;
+	}
+
+	public function disableEdit()
+	{
+		$this->disableEdit = true;
+		return $this;
+	}
+
+	public function disableCreate()
+	{
+		$this->disableCreate = true;
+		return $this;
+	}
+
+	public function disableAction()
+	{
+		$this->disableAction = true;
+		return $this;
+	}
 
     /**
      * @param $callback
