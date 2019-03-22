@@ -24,6 +24,18 @@ class DpadminInit extends Command
 	 */
 	protected function execute(Input $input, Output $output)
 	{
+		$this->moveAssetDir();
+		$this->initDb();
+	}
 
+	protected function initDb()
+	{
+
+	}
+
+	protected function moveAssetDir()
+	{
+		$assetDir = dirname(__DIR__)."/admin-lte";
+		shell_exec(sprintf("mv %s %s", $assetDir, app()->getRootPath()."/public/"));
 	}
 }

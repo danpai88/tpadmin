@@ -11,7 +11,7 @@ class CyLib
 	 * @param $param
 	 * @return mixed
 	 */
-	public static function view($tpl, $param)
+	public static function view($tpl, $param = [])
 	{
 		$viewPath = dirname(__DIR__)."/view/";
 		return View::config(['view_path' => $viewPath])->fetch($tpl, $param);

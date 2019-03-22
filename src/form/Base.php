@@ -12,6 +12,7 @@ class Base
 
     protected $id = '';
 	protected $label = '';
+	protected $is_search = false;
 
     public $data = [];
 
@@ -76,6 +77,12 @@ class Base
 	    if(isset($this->$name)){
 	    	return $this->$name;
 	    }
+    }
+
+    public function isSearch()
+    {
+    	$this->is_search = true;
+    	return $this;
     }
 
 	public function required($required)

@@ -1,7 +1,7 @@
 <div class="form-group">
-    <label for="{$instance->id}" class="col-sm-2 control-label">{$instance->label}</label>
+    <label for="{$instance->id}" class="{if !$instance->is_search}col-sm-2{/if} control-label">{$instance->label}</label>
 
-    <div class="col-sm-10 col-md-4">
+    <div {if $instance->is_search}style="display: inline-block"{else/}class="col-sm-10 col-md-4"{/if}>
         <select class="form-control input-sm" name="{$instance->id}{if $instance->isMulti}[]{/if}" id="{$instance->id}" {if $instance->isMulti}multiple="multiple"{/if}>
             {foreach $instance->options as $value => $_title}
                 <option value="{$value}"
@@ -26,12 +26,11 @@
         $('#{$instance->id}').select2({
             "placeholder":"{$instance->placeholder}"
         });
-
-        {if $instance->isMulti}
-            {if is_string($instance->value)}
-                {php}$instance->value = explode(",", rtrim($instance->value, ','));{/php}
-            {/if}
+        /*{if $instance->isMulti && $instance->value !== ''}*/
+            /*{if is_string($instance->value)}*/
+                /*{php}$instance->value = explode(",", rtrim($instance->value, ','));{/php}*/
+            /*{/if}*/
             $('#{$instance->id}').val({:json_encode($instance->value)}).trigger('change')
-        {/if}
-    });
+        /*{/if}*/
+});
 </script>
